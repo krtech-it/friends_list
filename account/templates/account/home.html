@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>good</h1>
+    {% if request.user.is_authenticated %}
+    <h2>hi {{request.user.username}}</h2>
+
+    <ul>
+        {% for case in cases %}
+            <li>
+                {{case.title}} - <a href="{% url 'delete_case' case.pk %}">delete</a> - <a href="{% url 'update_case' case.id %}">update</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'create_case' %}">create case</a></p>     
+    <p><a href="{% url 'my_friends' %}">my friends</a></p>     
+    <p><a href="{% url 'me_to_requests' %}">me to requests</a></p>
+    <p><a href="{% url 'profile_list' %}">see all profiles</a></p>
+    <p><a href="{% url 'logout' %}">log-out</a></p>
+    {%else%}
+    <a href="{%url 'login' %}">log-in</a>
+    {%endif%}
+{% endblock content %}

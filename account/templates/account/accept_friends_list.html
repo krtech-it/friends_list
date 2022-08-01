@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>requests to friends</h1>
+    {% for req in requests_list %}
+    <p>{{req.from_user.user.username}} - <a href="{% url 'accept_friend_request' req.id %}">accept</a> </p>
+    {% endfor %}
+{% endblock content %}

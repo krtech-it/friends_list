@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>all profiles</h1>
+    <p><a href="{% url 'my_friends' %}">my friends</a></p>
+    {%for profile in profiles %}
+        <p>{{profile.user.username}} ({{profile.user.first_name}})
+        {% if profile in my_friends %}
+            - FRIEND
+        {% elif profile.id in my_orders %}
+            - sent
+        {% else %}
+            - <a href="{% url 'send_friend_request' profile.pk %}">add</a>
+        {%endif%}
+        </p>
+    {%endfor%}
+
+    <hr>
+{% endblock content %}

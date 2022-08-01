@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>My Friends</h1>
+    {% for friend in friends %}
+        <p>{{friend.user.username}} - <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_friend' friend.id %}">delete</a>
+        - <a href="{% url 'detail_friend' friend.id %}">view profile</a></p>
+    {% endfor %}
+{% endblock content %}
